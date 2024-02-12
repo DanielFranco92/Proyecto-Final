@@ -1,0 +1,39 @@
+.sinPadding {
+    padding: 0px;
+    margin-left: 10px;
+}
+
+.container {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.text-center {
+    text-align: center;
+    margin: 40px 0px;
+    font-family:'Times New Roman', Times, serif
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #222222;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.media {
+    margin-bottom: 80px;
+}
+
+.row {
+    margin-bottom: 50px;
+}
+
+.sinMargen {
+    margin-bottom: 10px;
+    background-color: antiquewhite;
+}

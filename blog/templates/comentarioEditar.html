@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="text-center">Comentario</h1>
+
+<div class="row">
+    <div class="col">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <textarea name="descripcion" id="descripcion" style="width: 100%;height: 200px;">{{comentario}}</textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Publicar</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

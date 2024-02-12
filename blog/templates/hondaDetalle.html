@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h2 class="text-center">{{moto.titulo}}</h2>
+<div class="row">
+    <div class="col">
+        <img src="{% static './' %}{{moto.imagen}}" class="rounded" alt="Cinque Terre" width="304" height="236"> 
+    </div>
+    <div class="col">
+        <p>Marca: {{moto.marca}}</p>
+        <p>Modelo: {{moto.modelo}}</p>
+        <p>Cilindrada: {{moto.cilindrada}}</p>
+        <p>KM: {{moto.kilometro}}</p>
+        <p>Color: {{moto.color}}</p>
+        <p>Precio: {{moto.precio}}</p>
+        <p>Telefono: {{moto.telefono}}</p>
+        <p>email: {{moto.email}}</p>
+        <p>Descripcion: {{moto.descripcion}}</p>
+        <p>{{moto.usuario.first_name}} {{moto.usuario.last_name}}</p>
+
+        {% if user.is_authenticated and moto.usuario == user %}
+        <button class="btn btn-success">
+            <a href="{% url 'hondaEdicion' moto.id %}" style="color: white;">Editar</a>
+        </button>
+        <button class="btn btn-danger">
+            <a href="{% url 'hondaEliminar' moto.id %}" style="color: white;">Eliminar</a>
+        </button>
+        {% endif %}
+    </div>
+</div>
+
+{% if user.is_authenticated and moto.usuario != user %}
+<div class="row">
+    <div class="col">
+        <button class="btn btn-success">
+            <a href="{% url 'comentario' moto.marca moto.id %}" style="color: white;">Comentar la Publicacion</a>
+        </button>
+    </div>
+</div>
+{% endif %}
+
+<h3 class="text-center">Seccion de comentarios</h3>
+
+{% for x in comentario %}
+<div class="row sinMargen">
+    <div class="col">{{ x.nombre }}: {{ x.descripcion }}</div>
+</div>
+{% if user.is_authenticated and x.nombre == user.username %}
+<div class="row">
+    <div class="col">
+        <button class="btn btn-success">
+            <a href="{% url 'comentarioEditar' moto.marca moto.id x.id %}" style="color: white;">Editar</a>
+        </button>
+        <button class="btn btn-danger">
+            <a href="{% url 'comentarioEliminar' moto.marca moto.id x.id %}" style="color: white;">Eliminar</a>
+        </button>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+
+{% endblock %}

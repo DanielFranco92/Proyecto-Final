@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1 class="text-center">Bajaj</h1>
+
+<div class="row">
+    {% for x in moto %}
+    <div class="col-md-6">
+        <div class="card" style="width:400px"> 
+            <img class="card-img-top" src="{% static './' %}{{x.imagen}}" alt="Card image" style="width:100%">
+            <div class="card-body">
+              <h4 class="card-title">{{ x.titulo }}</h4>
+              <p class="card-text">{{ x.descripcion }}</p>
+              <p class="card-text">{{ x.marca }}</p>
+              <p class="card-text">{{ x.usuario.first_name }} {{ x.usuario.last_name }}</p>
+              <a href="{% url 'bajajDetalle' x.id %}" class="btn btn-primary">Ver Moto</a>
+            </div>
+        </div>
+    </div>
+    {% if forloop.counter|divisibleby:2 and not forloop.last %}
+</div>
+<br>
+<div class="row">
+    {% endif %}
+    {% endfor %}
+</div>
+<br>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>{{mensaje}}</p>
+
+<h1 class="text-center">Iniciar sesion</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="btn btn-success" style="margin-top: 10px;">
+        Iniciar sesion
+    </button>
+</form>
+<br><br>
+
+{% if error %}
+<div class="alert alert-danger">
+    <strong>{{error}}</strong>
+</div>
+{% endif %}
+
+
+{% endblock %}
